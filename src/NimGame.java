@@ -1,9 +1,17 @@
 /**
  * Created by es on 2017/4/27.
  */
+
+import java.util.Scanner;
+
 public class NimGame {
     public static int stonenum = 0;
     public int upperbound = 0;
+
+    public static int startgame(){
+        System.out.print("startgame succeed");
+        return 1;
+    }
 
     //To get the value of the upper bound and the number of stones
     public NimGame(int upperbound, int stonenum) {

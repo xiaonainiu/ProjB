@@ -19,4 +19,41 @@ public class NimPlayer {
     public String getname() {
         return name;
     }
+
+    public static boolean addplayer(String argument){
+        String[] argu = argument.split(",");
+        for (String s:argu){
+            System.out.println(s);
+        }
+        System.out.print("addplayer succeed");
+        return true;
+    }
+
+    public static boolean removeplayer(String argument){
+        System.out.print("removeplayer succeed");
+        return true;
+    }
+
+    public static boolean editplayer(String argument){
+        String[] argu = argument.split(",");
+        for (String s:argu){
+            System.out.println(s);
+        }
+        System.out.print("editplayer succeed");
+        return true;
+    }
+
+    public static boolean resetstats(String argument){
+        System.out.print("resetstats succeed");
+        return true;
+    }
+
+    public static boolean displayplayer(String argument){
+        System.out.print("displayplayer succeed");
+        return true;
+    }
+    public static boolean rankings(String argument){
+        System.out.print("rankings succeed");
+        return true;
+    }
 }
