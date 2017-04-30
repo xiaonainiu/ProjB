@@ -5,59 +5,84 @@ import java.util.Scanner;
  */
 public class Nimsys {
     static Scanner keyboard;
+    static NimPlayer[] playerlist;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
+        playerlist = new NimPlayer[100];
 
-        NimPlayer[] list = new NimPlayer[100];
-        list[0] = new NimPlayer();
-        list[0].username = "name1";
-        System.out.println(list[0].username);
-//        System.out.print(player.getUsername());
+        while(true){
+            identifyCommand(scanCommand());
 
-        identifyCommand(scanCommand());
+        }
     }
 
-    public static void identifyCommand(String command){
+    public static void identifyCommand(String command) {
 
         String[] commandsplit = command.split("\\s+");
 
-        if (commandsplit[0].equals("addplayer")){
-            NimPlayer.addplayer(commandsplit[1]);
+        if (commandsplit[0].equals("addplayer")) {
+            addplayer(commandsplit[1]);
         }
-        else if(commandsplit[0].equals("removeplayer")){
-            NimPlayer.removeplayer(commandsplit[1]);
-        }
-        else if(commandsplit[0].equals("editplayer")){
-            NimPlayer.editplayer(commandsplit[1]);
-        }
-        else if(commandsplit[0].equals("resetstats")){
-            NimPlayer.resetstats(commandsplit[1]);
-        }
-        else if(commandsplit[0].equals("displayplayer")){
-            NimPlayer.displayplayer(commandsplit[1]);
-        }
-        else if(commandsplit[0].equals("rankings")){
-            NimPlayer.rankings(commandsplit[1]);
-        }
-        else if(commandsplit[0].equals("startgame")){
+//        else if(commandsplit[0].equals("removeplayer")){
+//            NimPlayer.removeplayer(commandsplit[1]);
+//        }
+//        else if(commandsplit[0].equals("editplayer")){
+//            NimPlayer.editplayer(commandsplit[1]);
+//        }
+//        else if(commandsplit[0].equals("resetstats")){
+//            NimPlayer.resetstats(commandsplit[1]);
+//        }
+//        else if(commandsplit[0].equals("displayplayer")){
+//            NimPlayer.displayplayer(commandsplit[1]);
+//        }
+//        else if(commandsplit[0].equals("rankings")){
+//            NimPlayer.rankings(commandsplit[1]);
+//        }
+        else if (commandsplit[0].equals("startgame")) {
             NimGame.startgame();
-        }
-        else if(commandsplit[0].equals("exit")){
+        } else if (commandsplit[0].equals("exit")) {
             System.exit(0);
-        }
-        else{
+        } else {
             System.out.print("command not exist");
         }
     }
 
-    public static String scanCommand(){
+    public static int checkExist(String username) {
+
+        for (int i = 0; i < 100; i++) {
+            NimPlayer player = playerlist[i];
+            if (player == null) return i;
+            String existuser = player.getUsername();
+            if (existuser.equals(username)) return i;
+        }
+        return 100;
+    }
+
+
+    public static void addplayer(String arguments) {
+        String[] argu = arguments.split(",");
+
+        String username = argu[0];
+        int index = checkExist(username);
+
+        if (index == 100) {
+            System.out.println("full");
+
+        } else if (playerlist[index] == null) {
+            playerlist[index] = new NimPlayer(argu[0], argu[1], argu[2]);
+        } else {
+            System.out.println("exist");
+        }
+
+    }
+
+    public static String scanCommand() {
 
         keyboard = new Scanner(System.in);
         System.out.print("$");
         String command = keyboard.nextLine();
         return command;
     }
-
 
 
     //the playing process
