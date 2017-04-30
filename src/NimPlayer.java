@@ -1,24 +1,23 @@
+import java.util.Objects;
+
 /**
  * Created by Shen YI(844373) on 2017/3/20.
  */
 public class NimPlayer {
 
-    String name;
+    public String username;
+    String firstname;
+    String lastname;
+//    String name;
 
-    //To get the player's name
-    public NimPlayer(String name) {
-        this.name = name;
+    NimPlayer() {
+//        this.name = name;
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
     }
 
-    //player's action, remove stones
-    public static void removeStone(NimGame s, int r) {
-        s.remove(r);
-    }
-
-    //Output player's name
-    public String getname() {
-        return name;
-    }
+//    public String getUsername(){return username;}
 
     public static boolean addplayer(String argument){
         String[] argu = argument.split(",");
@@ -26,6 +25,7 @@ public class NimPlayer {
             System.out.println(s);
         }
         System.out.print("addplayer succeed");
+
         return true;
     }
 
@@ -56,4 +56,16 @@ public class NimPlayer {
         System.out.print("rankings succeed");
         return true;
     }
+
+    //player's action, remove stones
+//    public static void removeStone(NimGame s, int r) {
+//        s.remove(r);
+//    }
+
+    //Output player's name
+//    public String getname() {
+//        return name;
+//    }
 }
+
+

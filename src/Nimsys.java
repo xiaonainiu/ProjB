@@ -6,71 +6,74 @@ import java.util.Scanner;
 public class Nimsys {
     static Scanner keyboard;
 
-    //the playing process
-    public static boolean playingNim(NimPlayer player, NimGame nimstone) {
-        System.out.println(player.getname() + "'s turn - remove how many?");
-        int removenum = keyboard.nextInt();
-        if (removenum > nimstone.getUpperbound() || removenum < 1 || removenum > nimstone.reststone()) {
-            System.out.println("WRONG INPUT");
-            return false;
-        } else {
-            player.removeStone(nimstone, removenum);
-            return true;
-        }
-    }
-
     public static void main(String[] args){
 
-        scanCommand();
-//        String str = "x1;x2;x3";
-//        String[] strs = str.split(";");
+        NimPlayer[] list = new NimPlayer[100];
+        list[0] = new NimPlayer();
+        list[0].username = "name1";
+        System.out.println(list[0].username);
+//        System.out.print(player.getUsername());
 
+        identifyCommand(scanCommand());
     }
 
-    public static void scanCommand(){
-
-        keyboard = new Scanner(System.in);
-
-        System.out.print("$");
-
-        String command = keyboard.nextLine();
+    public static void identifyCommand(String command){
 
         String[] commandsplit = command.split("\\s+");
-        String commandname = commandsplit[0];
-        if (commandname.equals("addplayer")){
+
+        if (commandsplit[0].equals("addplayer")){
             NimPlayer.addplayer(commandsplit[1]);
         }
-        else if(command.equals("removeplayer")){
+        else if(commandsplit[0].equals("removeplayer")){
             NimPlayer.removeplayer(commandsplit[1]);
         }
-        else if(command.equals("editplayer")){
+        else if(commandsplit[0].equals("editplayer")){
             NimPlayer.editplayer(commandsplit[1]);
         }
-        else if(command.equals("resetstats")){
+        else if(commandsplit[0].equals("resetstats")){
             NimPlayer.resetstats(commandsplit[1]);
         }
-        else if(command.equals("displayplayer")){
+        else if(commandsplit[0].equals("displayplayer")){
             NimPlayer.displayplayer(commandsplit[1]);
         }
-        else if(command.equals("rankings")){
+        else if(commandsplit[0].equals("rankings")){
             NimPlayer.rankings(commandsplit[1]);
         }
-        else if(command.equals("startgame")){
+        else if(commandsplit[0].equals("startgame")){
             NimGame.startgame();
         }
-        else if(command.equals("exit")){
+        else if(commandsplit[0].equals("exit")){
             System.exit(0);
         }
         else{
             System.out.print("command not exist");
         }
-//        String[] commandargument = commandsplit[1].split(",");
-//
-//        System.out.println(commandsplit[0]);
-//        System.out.println(commandargument[0]);
-//        System.out.println(commandargument[1]);
-//        System.out.println(commandargument[2]);
     }
+
+    public static String scanCommand(){
+
+        keyboard = new Scanner(System.in);
+        System.out.print("$");
+        String command = keyboard.nextLine();
+        return command;
+    }
+
+
+
+    //the playing process
+//    public static boolean playingNim(NimPlayer player, NimGame nimstone) {
+//        System.out.println(player.getname() + "'s turn - remove how many?");
+//        int removenum = keyboard.nextInt();
+//        if (removenum > nimstone.getUpperbound() || removenum < 1 || removenum > nimstone.reststone()) {
+//            System.out.println("WRONG INPUT");
+//            return false;
+//        } else {
+//            player.removeStone(nimstone, removenum);
+//            return true;
+//        }
+//    }
+
+
 //    public static void main(String[] args) {
 //
 //        keyboard = new Scanner(System.in);
