@@ -18,7 +18,7 @@ public class NimPlayer {
         this.game = 0;
         this.win = 0;
         System.out.println(this.username +","+ this.firstname +","+ this.lastname +","+ game +","+ win);
-        System.out.print("Plaayer Created");
+        System.out.println("Player Created");
     }
     public String getUsername(){
 

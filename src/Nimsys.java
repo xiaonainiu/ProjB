@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -8,11 +9,11 @@ public class Nimsys {
     static NimPlayer[] playerlist;
 
     public static void main(String[] args) {
+
         playerlist = new NimPlayer[100];
 
         while(true){
             identifyCommand(scanCommand());
-
         }
     }
 
@@ -23,18 +24,22 @@ public class Nimsys {
         if (commandsplit[0].equals("addplayer")) {
             addplayer(commandsplit[1]);
         }
-//        else if(commandsplit[0].equals("removeplayer")){
-//            NimPlayer.removeplayer(commandsplit[1]);
-//        }
+        else if(commandsplit[0].equals("removeplayer")){
+            if (commandsplit[0].length() == command.length()){
+                removeplayer(null);
+            }
+            else {removeplayer(commandsplit[1]);}
+
+        }
 //        else if(commandsplit[0].equals("editplayer")){
 //            NimPlayer.editplayer(commandsplit[1]);
 //        }
 //        else if(commandsplit[0].equals("resetstats")){
 //            NimPlayer.resetstats(commandsplit[1]);
 //        }
-//        else if(commandsplit[0].equals("displayplayer")){
-//            NimPlayer.displayplayer(commandsplit[1]);
-//        }
+        else if(commandsplit[0].equals("displayplayer")){
+            displayplayer(commandsplit[1]);
+        }
 //        else if(commandsplit[0].equals("rankings")){
 //            NimPlayer.rankings(commandsplit[1]);
 //        }
@@ -43,7 +48,7 @@ public class Nimsys {
         } else if (commandsplit[0].equals("exit")) {
             System.exit(0);
         } else {
-            System.out.print("command not exist");
+            System.out.println("command not exist");
         }
     }
 
@@ -71,7 +76,7 @@ public class Nimsys {
         } else if (playerlist[index] == null) {
             playerlist[index] = new NimPlayer(argu[0], argu[1], argu[2]);
         } else {
-            System.out.println("exist");
+            System.out.println("The player already exists.");
         }
 
     }
@@ -84,6 +89,79 @@ public class Nimsys {
         return command;
     }
 
+    public static void removeplayer(String arguments){
+        String username = arguments;
+        int index = checkExist(username);
+//        System.out.println(index);
+        if (username == null){
+            System.out.println("Are you sure you want to remove all players? (y/n)");
+            if (keyboard.nextLine().equals("y")){
+                playerlist = new NimPlayer[100];
+            }
+            return;
+        }
+        if (index == 100 || playerlist[index] == null){
+            System.out.println("The player does not exist.");
+        }
+        else{
+            for (int i = index; i<99; i++){
+                if (playerlist[i+1] != null){
+                    playerlist[i] = playerlist[i+1];
+                }
+                playerlist[99] = null;
+            }
+        }
+    }
+
+    public static void  displayplayer(String argument){
+        int len = checkExist(null);
+//        Objects temp = null;
+        for(int i = 0; i < len - 1; i++){
+            for (int j = 0; j < len - 1 - i; j++){
+                if ((playerlist[j].username.compareTo(playerlist[j+1].username)) > 0){
+                    String username = playerlist[j].username;
+                    String firstname = playerlist[j].firstname;
+                    String lastname = playerlist[j].lastname;
+                    int game = playerlist[j].game;
+                    int win = playerlist[j].win;
+                    playerlist[j]= playerlist[j+1];
+                    playerlist[j+1].username = username;
+                    playerlist[j+1].firstname = firstname;
+                    playerlist[j+1].lastname = lastname;
+                    playerlist[j+1].game = game;
+                    playerlist[j+1].win = win;
+
+                }
+            }
+        }
+    }
+
+    public static void sort(String[] list){
+        int len = list.length;
+        String temp = null;
+        for( int i = 0; i < len - 1; i++){
+            for( int j = 0; j < len - 1 - i; j++){
+                if((list[j].compareTo(list[j + 1])) > 0){
+                    temp = list[j];
+                    list[j] = list[j + 1];
+                    list[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    public static void print(String[] list){
+
+        for (String str :list){
+            System.out.println(str);
+        }
+    }
+    public static void display(String argument){
+
+        String[] list ={"apple","add","address","ban","ben","even","day"};
+        sort(list);
+        print(list);
+    }
 
     //the playing process
 //    public static boolean playingNim(NimPlayer player, NimGame nimstone) {
