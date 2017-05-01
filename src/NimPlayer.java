@@ -17,13 +17,53 @@ public class NimPlayer {
         this.lastname = lastname;
         this.game = 0;
         this.win = 0;
-        System.out.println(this.username +","+ this.firstname +","+ this.lastname +","+ game +","+ win);
-        System.out.println("Player Created");
+//        System.out.println(this.username +","+ this.firstname +","+ this.lastname +","+ game +","+ win);
+//        System.out.println("Player Created");
     }
-    public String getUsername(){
 
+    public String getUsername(){
         return this.username;
     }
+
+    public String getFirstname(){
+        return this.firstname;
+    }
+
+    public String getLastname(){
+        return this.lastname;
+    }
+
+    public int getGame(){
+        return this.game;
+    }
+
+    public int getWin(){
+        return this.win;
+    }
+
+    public  double getwinningRatio(){
+        return ((double)this.win*100/this.game);
+    }
+
+    public void edit(String firstname, String lastname){
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
+    public void reset(){
+        this.game = 0;
+        this.win = 0;
+    }
+
+    public void Win(){
+        this.game++;
+        this.win++;
+    }
+
+    public void Lose(){
+        this.game++;
+    }
+
 //    public list(){
 //        NimPlayer[] list = new NimPlayer[100];
 //        list[0] = new NimPlayer();
