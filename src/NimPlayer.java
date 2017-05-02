@@ -5,7 +5,7 @@ import java.util.Objects;
  */
 public class NimPlayer {
 
-    public String username;
+    String username;
     String firstname;
     String lastname;
     int game;
@@ -17,8 +17,6 @@ public class NimPlayer {
         this.lastname = lastname;
         this.game = 0;
         this.win = 0;
-//        System.out.println(this.username +","+ this.firstname +","+ this.lastname +","+ game +","+ win);
-//        System.out.println("Player Created");
     }
 
     public String getUsername(){
@@ -45,6 +43,27 @@ public class NimPlayer {
         return ((double)this.win*100/this.game);
     }
 
+    public String printwinningRatio(){
+        String ratio = String.valueOf(Math.round(getwinningRatio())) + "%";
+        while (ratio.length()<4){
+            ratio = ratio + " ";
+        }
+        return ratio;
+    }
+
+    public String printGame(){
+        String game = String.valueOf(getGame());
+        while (game.length()<2){
+            game = "0"+game;
+        }
+        return game;
+    }
+
+    public String printrankings(){
+        String rank = printwinningRatio()+" | "+printGame()+" games | "+getFirstname()+" "+getLastname();
+        return rank;
+    }
+
     public void edit(String firstname, String lastname){
         this.firstname = firstname;
         this.lastname = lastname;
@@ -63,53 +82,6 @@ public class NimPlayer {
     public void Lose(){
         this.game++;
     }
-
-//    public list(){
-//        NimPlayer[] list = new NimPlayer[100];
-//        list[0] = new NimPlayer();
-//        list[0].username = "name1";
-//        System.out.println(list[0].username);
-//    }
-
-
-//
-//    public static boolean removeplayer(String argument){
-//        System.out.print("removeplayer succeed");
-//        return true;
-//    }
-//
-//    public static boolean editplayer(String argument){
-//        String[] argu = argument.split(",");
-//        for (String s:argu){
-//            System.out.println(s);
-//        }
-//        System.out.print("editplayer succeed");
-//        return true;
-//    }
-//
-//    public static boolean resetstats(String argument){
-//        System.out.print("resetstats succeed");
-//        return true;
-//    }
-//
-//    public static boolean displayplayer(String argument){
-//        System.out.print("displayplayer succeed");
-//        return true;
-//    }
-//    public static boolean rankings(String argument){
-//        System.out.print("rankings succeed");
-//        return true;
-//    }
-
-    //player's action, remove stones
-//    public static void removeStone(NimGame s, int r) {
-//        s.remove(r);
-//    }
-
-    //Output player's name
-//    public String getname() {
-//        return name;
-//    }
 }
 
 

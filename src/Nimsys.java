@@ -53,22 +53,19 @@ public class Nimsys {
         ssy.Win();ssy.Lose();ssy.Lose();ssy.Lose();ssy.Lose();ssy.Lose();ssy.Lose();ssy.Lose();ssy.Lose();ssy.Lose();ssy.Lose();
         zzz.Lose();zzz.Lose();zzz.Lose();zzz.Lose();zzz.Lose();zzz.Lose();zzz.Lose();zzz.Lose();zzz.Lose();zzz.Lose();zzz.Lose();
 
-
-        System.out.println(Math.round(aaa.getwinningRatio()));
-        System.out.printf("%-5.0f",aaa.getwinningRatio());
-        System.out.println();
-        System.out.println(Math.round(bbb.getwinningRatio()));
-        System.out.println(Math.round(ccc.getwinningRatio()));
-        System.out.println(Math.round(ddd.getwinningRatio()));
-        System.out.println(Math.round(eee.getwinningRatio()));
-        System.out.println(Math.round(es.getwinningRatio()));
-        System.out.println(Math.round(fff.getwinningRatio()));
-        System.out.println(Math.round(ggg.getwinningRatio()));
-        System.out.println(Math.round(hhh.getwinningRatio()));
-        System.out.println(Math.round(iii.getwinningRatio()));
-        System.out.println(Math.round(jjj.getwinningRatio()));
-        System.out.println(Math.round(ssy.getwinningRatio()));
-        System.out.println(Math.round(zzz.getwinningRatio()));
+//        System.out.println(Math.round(aaa.getwinningRatio()));
+//        System.out.println(Math.round(bbb.getwinningRatio()));
+//        System.out.println(Math.round(ccc.getwinningRatio()));
+//        System.out.println(Math.round(ddd.getwinningRatio()));
+//        System.out.println(Math.round(eee.getwinningRatio()));
+//        System.out.println(Math.round(es.getwinningRatio()));
+//        System.out.println(Math.round(fff.getwinningRatio()));
+//        System.out.println(Math.round(ggg.getwinningRatio()));
+//        System.out.println(Math.round(hhh.getwinningRatio()));
+//        System.out.println(Math.round(iii.getwinningRatio()));
+//        System.out.println(Math.round(jjj.getwinningRatio()));
+//        System.out.println(Math.round(ssy.getwinningRatio()));
+//        System.out.println(Math.round(zzz.getwinningRatio()));
 
         while(true){
             identifyCommand(scanCommand());
@@ -111,7 +108,7 @@ public class Nimsys {
             else {rankings(commandsplit[1]);}
         }
         else if (commandsplit[0].equals("startgame")) {
-            NimGame.startgame();
+            startgame(commandsplit[1]);
         } else if (commandsplit[0].equals("exit")) {
             System.exit(0);
         } else {
@@ -273,12 +270,21 @@ public class Nimsys {
                         }
                     }
                     if (rank == i && playerj != null && count < 10){
-                        System.out.println(Math.round(playerj.getwinningRatio())+","+playerj.getGame()+","+playerj.getFirstname()+","+playerj.getLastname());
+                        System.out.println(playerj.printrankings());
                         count++;
                     }
                 }
             }
         }
+    }
+
+    public static void startgame(String arguments){
+        String[] argu = arguments.split(",");
+        int initialstones = Integer.parseInt(argu[0]);
+        int upperbound =  Integer.parseInt(argu[1]);
+        String username1 = argu[2];
+        String username2 = argu[3];
+      NimGame game = new NimGame(initialstones,upperbound,username1,username2);
     }
 
     public static String scanCommand() {

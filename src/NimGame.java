@@ -7,16 +7,20 @@ import java.util.Scanner;
 public class NimGame {
     public static int stonenum = 0;
     public int upperbound = 0;
+    String player1;
+    String player2;
 
-    public static int startgame(){
-        System.out.print("startgame succeed");
-        return 1;
-    }
+//    public static int startgame(String arguments){
+//        System.out.print("startgame succeed");
+//        return 1;
+//    }
 
     //To get the value of the upper bound and the number of stones
-    public NimGame(int upperbound, int stonenum) {
+    public NimGame(int initialstones, int upperbound, String username1, String username2) {
+        this.stonenum = initialstones;
         this.upperbound = upperbound;
-        this.stonenum = stonenum;
+        this.player1 = username1;
+        this.player2 = username2;
     }
 
     //To remove stones, if there is stones left, show the stone's information
