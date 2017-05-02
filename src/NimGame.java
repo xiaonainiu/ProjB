@@ -2,10 +2,8 @@
  * Created by es on 2017/4/27.
  */
 
-import java.util.Scanner;
-
 public class NimGame {
-    static Scanner keyboard;
+//    static Scanner keyboard;
     public static int stonenum;
     public static int upperbound;
     NimPlayer player1;
@@ -18,9 +16,10 @@ public class NimGame {
         this.player1 = player1;
         this.player2 = player2;
 
-        keyboard = new Scanner(System.in);
-
-        System.out.println("Welcome to Nim");
+        System.out.println("Initial stone count: "+initialstones);
+        System.out.println("Maximum stone removal: "+upperbound);
+        System.out.println("Player 1: "+player1.getLastname()+" "+player1.getFirstname());
+        System.out.println("Player 1: "+player2.getLastname()+" "+player2.getFirstname());
 
             printNimstoneinfo();
 
@@ -55,7 +54,7 @@ public class NimGame {
 
         public static boolean playingNim(NimPlayer player) {
         System.out.println(player.getFirstname() + "'s turn - remove how many?");
-        int removenum = keyboard.nextInt();
+        int removenum = Nimsys.keyboard.nextInt();
         if (removenum > getUpperbound() || removenum < 1 || removenum > reststone()) {
             System.out.println("WRONG INPUT");
             return false;

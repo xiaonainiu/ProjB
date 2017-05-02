@@ -9,6 +9,10 @@ public class Nimsys {
 
     public static void main(String[] args) {
 
+        System.out.println("Welcome to Nim");
+
+        keyboard = new Scanner(System.in);
+
         playerlist = new NimPlayer[100];
 
 //        playerlist[0] = new NimPlayer("aaa", "afirstname", "alastname");
@@ -217,7 +221,7 @@ public class Nimsys {
             for (int i = 0; i < 100; i++) {
                 NimPlayer player = playerlist[i];
                 if (playerlist[i] != null) {
-                    System.out.println(player.getUsername() + "," + player.getFirstname() + "," + player.getLastname() + "," + player.getGame() + " games," + player.getWin() + " wins");
+                    System.out.println(player.getUsername() + "," + player.getLastname() + "," + player.getFirstname() + "," + player.getGame() + " games," + player.getWin() + " wins");
                 } else {
                     return;
                 }
@@ -265,8 +269,6 @@ public class Nimsys {
         String username2 = argu[3];
         int index1 = checkExist(username1);
         int index2 = checkExist(username2);
-        System.out.println(index1);
-        System.out.println(index2);
         NimPlayer player1 = playerlist[index1];
         NimPlayer player2 = playerlist[index2];
         if (player1 == null || player2 == null) {
@@ -282,7 +284,8 @@ public class Nimsys {
     }
 
     public static String scanCommand() {
-        keyboard = new Scanner(System.in);
+
+        System.out.println();
         System.out.print("$");
         String command = keyboard.nextLine();
         return command;
