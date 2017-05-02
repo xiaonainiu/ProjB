@@ -1,8 +1,8 @@
-import java.util.Objects;
-
 /**
  * Created by Shen YI(844373) on 2017/3/20.
  */
+import java.util.Objects;
+
 public class NimPlayer {
 
     String username;
