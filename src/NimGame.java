@@ -15,11 +15,11 @@ public class NimGame {
         this.upperbound = upperbound;
         this.player1 = player1;
         this.player2 = player2;
-
+        System.out.println();
         System.out.println("Initial stone count: "+initialstones);
         System.out.println("Maximum stone removal: "+upperbound);
         System.out.println("Player 1: "+player1.getLastname()+" "+player1.getFirstname());
-        System.out.println("Player 1: "+player2.getLastname()+" "+player2.getFirstname());
+        System.out.println("Player 2: "+player2.getLastname()+" "+player2.getFirstname());
 
             printNimstoneinfo();
 
@@ -30,9 +30,11 @@ public class NimGame {
             while (!empty()) {
                 if (turn % 2 == 0) {
                     while (!playingNim(player1)) ;
+//                    printNimstoneinfo();
                     activeplayer = player2;
                 } else {
                     while (!playingNim(player2)) ;
+//                    printNimstoneinfo();
                     activeplayer = player1;
                 }
                 turn++;
@@ -48,15 +50,18 @@ public class NimGame {
                 player1.Lose();
                 player2.Win();
             }
-            System.out.println(activeplayer.getFirstname() + " wins!");
-
+            System.out.println(activeplayer.getLastname()+" "+activeplayer.getFirstname() + " wins!");
+            return;
     }
 
         public static boolean playingNim(NimPlayer player) {
-        System.out.println(player.getFirstname() + "'s turn - remove how many?");
+//            printNimstoneinfo();
+        System.out.println(player.getLastname() + "'s turn - remove how many?");
         int removenum = Nimsys.keyboard.nextInt();
         if (removenum > getUpperbound() || removenum < 1 || removenum > reststone()) {
-            System.out.println("WRONG INPUT");
+            System.out.println("Invalid move. You must remove between 1 and "+min(upperbound,stonenum)+" stones.");
+            System.out.println();
+            printNimstoneinfo();
             return false;
         } else {
             removeStone(removenum);
@@ -96,10 +101,15 @@ public class NimGame {
             System.out.print(" *");
         }
         System.out.println();
+
     }
 
     //Output the upper bound
     public static int getUpperbound() {
         return upperbound;
+    }
+    public static int min(int upperbound,int stonenum){
+        if (upperbound<=stonenum) return upperbound;
+        else return stonenum;
     }
 }

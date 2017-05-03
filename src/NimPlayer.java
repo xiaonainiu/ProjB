@@ -60,7 +60,7 @@ public class NimPlayer {
     }
 
     public String printrankings(){
-        String rank = printwinningRatio()+" | "+printGame()+" games | "+getFirstname()+" "+getLastname();
+        String rank = printwinningRatio()+" | "+printGame()+" games | "+getLastname()+" "+getFirstname();
         return rank;
     }
 

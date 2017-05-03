@@ -97,9 +97,11 @@ public class Nimsys {
             }
         } else if (commandsplit[0].equals("startgame")) {
             startgame(commandsplit[1]);
+//            return;
         } else if (commandsplit[0].equals("exit")) {
             System.exit(0);
-        } else {
+        } else{
+//            System.out.println(command.equals(""));
             System.out.println("command not exist");
         }
     }
@@ -191,7 +193,7 @@ public class Nimsys {
     public static void resetstats(String argument) {
         String username = argument;
         if (username == null) {
-            System.out.println("Are you sure you want to remove all players? (y/n)");
+            System.out.println("Are you sure you want to reset all player statistics? (y/n)");
             if (keyboard.nextLine().equals("y")) {
                 for (int i = 0; i < 100; i++) {
                     NimPlayer player = playerlist[i];
@@ -233,7 +235,7 @@ public class Nimsys {
             System.out.println("The player does not exist.");
         } else {
             NimPlayer player = playerlist[index];
-            System.out.println(player.getUsername() + "," + player.getFirstname() + "," + player.getLastname() + "," + player.getGame() + " games," + player.getWin() + " wins");
+            System.out.println(player.getUsername() + "," + player.getLastname() + "," + player.getFirstname() + "," + player.getGame() + " games," + player.getWin() + " wins");
         }
     }
 
@@ -280,6 +282,7 @@ public class Nimsys {
         } else {
             NimGame game = new NimGame(initialstones, upperbound, player1, player2);
         }
+        return;
 
     }
 
@@ -287,7 +290,10 @@ public class Nimsys {
 
         System.out.println();
         System.out.print("$");
-        String command = keyboard.nextLine();
+        String command = "";
+        while (command.equals("")){
+            command = keyboard.nextLine();
+        }
         return command;
     }
 }
