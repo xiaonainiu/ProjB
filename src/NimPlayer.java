@@ -33,14 +33,6 @@ public class NimPlayer {
         return this.lastname;
     }
 
-    public int getGame() {
-        return this.game;
-    }
-
-    public int getWin() {
-        return this.win;
-    }
-
 //    To get the winning ratio of this player
     public double getwinningRatio() {
         return ((double) this.win * 100 / this.game);
@@ -62,8 +54,8 @@ public class NimPlayer {
     }
 
 //    To print the number of games this player has played in two-digit
-    public String printGame() {
-        String game = String.valueOf(getGame());
+    private String printGame() {
+        String game = String.valueOf(this.game);
         while (game.length() < 2) {
             game = "0" + game;
         }

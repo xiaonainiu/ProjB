@@ -9,7 +9,7 @@ public class Nimsys {
     static NimPlayer[] playerlist;
 
     //    scan the command
-    public static String scanCommand() {
+    private static String scanCommand() {
         System.out.println();
         System.out.print("$");
         String command = "";
@@ -20,7 +20,7 @@ public class Nimsys {
     }
 
     //      identify the command, split command in parts, invoke different method depends on different command
-    public static void identifyCommand(String command) {
+    private static void identifyCommand(String command) {
 
         String[] commandsplit = command.split("\\s+");
 
@@ -66,7 +66,7 @@ public class Nimsys {
 //    If the username is exist, return the index of the user.
 //    If the username is not exist, return the index the user should be. The user is ordered in alphabetical order in the user list
 //    If the username is not exist and the user list is full, return 100.
-    public static int checkExist(String username) {
+    private static int checkExist(String username) {
 
         for (int i = 0; i < 100; i++) {
             NimPlayer player = playerlist[i];
@@ -81,7 +81,7 @@ public class Nimsys {
     }
 
 //    Add player into the user list in the right index. The user is ordered in alphabetical order in the user list
-    public static void addplayer(String arguments) {
+    private static void addplayer(String arguments) {
         String[] argu = arguments.split(",");
         String username = argu[0];
         int index = checkExist(username);
@@ -103,7 +103,7 @@ public class Nimsys {
 
 //    Check the commend first.
 //    Then, remove all players or remove the aim player if exist.
-    public static void removeplayer(String arguments) {
+    private static void removeplayer(String arguments) {
         String username = arguments;
         if (username == null) {
             System.out.println("Are you sure you want to remove all players? (y/n)");
@@ -132,7 +132,7 @@ public class Nimsys {
         }
     }
 //    Update the player's first name and last name if the player is exist.
-    public static void editplayer(String arguments) {
+    private static void editplayer(String arguments) {
         String[] argu = arguments.split(",");
         String username = argu[0];
         String firstname = argu[1];
@@ -152,7 +152,7 @@ public class Nimsys {
 
 //    Check the commend first.
 //    Then, reset all statistics or reset the aim player's statistics.
-    public static void resetstats(String argument) {
+    private static void resetstats(String argument) {
         String username = argument;
         if (username == null) {
             System.out.println("Are you sure you want to reset all player statistics? (y/n)");
@@ -181,7 +181,7 @@ public class Nimsys {
 
 //    Check the commend first.
 //    Then, display all player's information in alphabetical order or display the aim player's information.
-    public static void displayplayer(String argument) {
+    private static void displayplayer(String argument) {
         String username = argument;
         if (username == null) {
             for (int i = 0; i < 100; i++) {
@@ -199,13 +199,13 @@ public class Nimsys {
             System.out.println("The player does not exist.");
         } else {
             NimPlayer player = playerlist[index];
-            System.out.println(player.getUsername() + "," + player.getLastname() + "," + player.getFirstname() + "," + player.getGame() + " games," + player.getWin() + " wins");
+            System.out.println(player.printplayer());
         }
     }
 
 //    Rank the players by winning ratio.
 //    Display the top 10 players in descending order or ascending order.
-    public static void rankings(String argument) {
+    private static void rankings(String argument) {
         if (argument == null) argument = "desc";
         int count = 0;
         int[] ranklist = new int[10];
@@ -247,7 +247,7 @@ public class Nimsys {
     }
 
 //    Start a game
-    public static void startgame(String arguments) {
+    private static void startgame(String arguments) {
         String[] argu = arguments.split(",");
         int initialstones = Integer.parseInt(argu[0]);
         int upperbound = Integer.parseInt(argu[1]);
@@ -260,7 +260,7 @@ public class Nimsys {
         if (player1 == null || player2 == null) {
             System.out.println("One of the players does not exist.");
             return;
-        } else if (!player1.username.equals(username1) || !player2.username.equals(username2)) {
+        } else if (!player1.getUsername().equals(username1) || !player2.getUsername().equals(username2)) {
             System.out.println("One of the players does not exist.");
         } else {
             NimGame game = new NimGame(initialstones, upperbound, player1, player2);
